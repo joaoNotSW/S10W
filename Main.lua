@@ -15,6 +15,7 @@ end
 
 function draw()
     background(0)
+
     MAIN_GRID:draw()
 end
 
@@ -25,5 +26,13 @@ function touched(touch)
     else
       CURRENT_PLAYER = "X"
     end
+
+    winner = MAIN_GRID:checkwin()
+    if winner ~= "CLOSED" then
+      print("WINNER:", winner)
+      MAIN_GRID.winner = winner
+      setup()
+    end
+
   end
 end

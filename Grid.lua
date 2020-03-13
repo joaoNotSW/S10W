@@ -41,3 +41,35 @@ function Grid:touched(touch, player)
     end
   end
 end
+
+function Grid:checkwin()
+  -- Check Rows
+  for i = 0, 2 do
+    if self.tiles[i][0].state == self.tiles[i][1].state and self.tiles[i][0].state == self.tiles[i][2].state then
+      if self.tiles[i][0].state ~= "CLOSED" then
+        return self.tiles[i][0].state
+      end
+    end
+  end
+
+  -- Check Collumns
+  for j = 0, 2 do
+    if self.tiles[0][j].state == self.tiles[1][j].state and self.tiles[0][j].state == self.tiles[2][j].state then
+      if self.tiles[0][j].state ~= "CLOSED" then
+        return self.tiles[i][0].state
+      end
+    end
+  end
+
+  -- Check Diagonals
+  if self.tiles[0][0].state == self.tiles[1][1].state and self.tiles[0][0].state == self.tiles[2][2].state then
+    if self.tiles[1][1].state ~= "CLOSED" then
+      return self.tiles[1][1].state
+    end
+  elseif self.tiles[0][2].state == self.tiles[1][1].state and self.tiles[0][2].state == self.tiles[2][0].state then
+    if self.tiles[1][1].state ~= "CLOSED" then
+      return self.tiles[1][1].state
+    end
+  end
+  return "CLOSED"
+end
