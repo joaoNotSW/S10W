@@ -14,10 +14,16 @@ function setup()
 end
 
 function draw()
-    background(255)
+    background(0)
     MAIN_GRID:draw()
 end
 
 function touched(touch)
-  MAIN_GRID:touched(touch, CURRENT_PLAYER)
+  if MAIN_GRID:touched(touch, CURRENT_PLAYER) == 0 then
+    if CURRENT_PLAYER == "X" then
+      CURRENT_PLAYER = "O"
+    else
+      CURRENT_PLAYER = "X"
+    end
+  end
 end
