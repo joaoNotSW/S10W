@@ -56,7 +56,7 @@ function Grid:checkwin()
   for j = 0, 2 do
     if self.tiles[0][j].state == self.tiles[1][j].state and self.tiles[0][j].state == self.tiles[2][j].state then
       if self.tiles[0][j].state ~= "CLOSED" then
-        return self.tiles[i][0].state
+        return self.tiles[0][j].state
       end
     end
   end
