@@ -49,7 +49,7 @@ function Grid:draw()
       noFill()
       stroke(255, 0, 0)
       strokeWidth(25)
-      ellipse(WIDTH/2, HEIGHT/2, self.size - self.size/6)
+      ellipse(self.x + self.size/2, self.y + self.size/2, self.size - self.size/6)
     popStyle()
   end
 
@@ -57,10 +57,12 @@ end
 
 function Grid:touched(touch, player)
   if self.winner == nil then
-    j = math.floor((touch.x - self.x)/(self.size/3))
-    i = math.floor((touch.y - self.y)/(self.size/3))
+    jx = math.floor((touch.x - self.x)/(self.size/3))
+    iy = math.floor((touch.y - self.y)/(self.size/3))
 
-    return self.tiles[i][j]:touched(touch, player)
+    print (jx, iy)
+
+    return self.tiles[iy][jx]:touched(touch, player)
   end
 end
 

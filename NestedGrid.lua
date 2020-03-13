@@ -5,6 +5,8 @@ function NestedGrid:init(x, y, size)
   self.y = y
   self.size = size
   self.grids = {}
+  self.nextPlay = {nil, nil}
+  self.winner = nil
 
   for i = 0, 2 do
     self.grids[i] = {}
@@ -33,6 +35,24 @@ function NestedGrid:draw()
     line(self.x + 20, self.y + 2*self.size/3, self.x + self.size - 20, self.y + 2*self.size/3)
   popStyle()
 
+  if self.winner == "X" then
+    pushStyle()
+      stroke(0, 255, 0)
+      strokeWidth(35)
+      x = self.x + self.size/6
+      y = self.y + self.size/6
+      line(x, y, x + 2*self.size/3, y + 2*self.size/3)
+      line(x, y + 2*self.size/3, x + 2*self.size/3, y)
+    popStyle()
+  elseif self.winner == "O" then
+    pushStyle()
+      noFill()
+      stroke(255, 0, 0)
+      strokeWidth(35)
+      ellipse(self.x + self.size/2, self.y + self.size/2, self.size - self.size/6)
+    popStyle()
+  end
+
 end
 
 function NestedGrid:touched(touch, player)
@@ -42,7 +62,11 @@ function NestedGrid:touched(touch, player)
         j = math.floor((touch.x - self.x)/(self.size/3))
         i = math.floor((touch.y - self.y)/(self.size/3))
 
-        return self.grids[i][j]:touched(touch, player)
+        
+
+        tmp = self.grids[i][j]:touched(touch, player)
+        self.grids[math.floor((touch.x - self.x)/(self.size/3))][math.floor((touch.y - self.y)/(self.size/3))]:checkwin()
+        return tmp
       end
     end
   end

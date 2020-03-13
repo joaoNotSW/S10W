@@ -29,6 +29,7 @@ function touched(touch)
     winner = NESTED_GRID:checkwin()
     if winner ~= nil then
       print (winner)
+      NESTED_GRID.winner = winner
     end
 
   end
