@@ -19,6 +19,7 @@ function Grid:init(x, y, size)
 end
 
 function Grid:draw()
+  -- Draw all tiles
   for i = 0, 2 do
     for j = 0, 2 do
       self.tiles[i][j]:draw()
@@ -27,5 +28,13 @@ function Grid:draw()
 end
 
 function Grid:touched(touch)
-
+  if touch.state == ENDED then
+    if touch.x >= self.x and touch.x <= self.x + self.size then
+      if touch.y >= self.y and touch.y <= self.y + self.size then
+        j = math.floor((touch.x - self.x)/(self.size/3))
+        i = math.floor((touch.y - self.y)/(self.size/3))
+        print (j,i)
+      end
+    end
+  end
 end

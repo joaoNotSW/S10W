@@ -16,3 +16,7 @@ function draw()
     background(255)
     MAIN_GRID:draw()
 end
+
+function touched(touch)
+  MAIN_GRID:touched(touch)
+end
