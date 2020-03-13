@@ -25,6 +25,21 @@ function Grid:draw()
       self.tiles[i][j]:draw()
     end
   end
+
+  if self.winner == "X" then
+    pushStyle()
+      stroke(0, 255, 0)
+      strokeWidth(15)
+      x = self.x + self.size/6
+      y = self.y + self.size/6
+      line(x, y, x + 2*self.size/3, y + 2*self.size/3)
+      line(x, y + 2*self.size/3, x + 2*self.size/3, y)
+    popStyle()
+  else
+    pushStyle()
+    popStyle()
+  end
+
 end
 
 function Grid:touched(touch, player)

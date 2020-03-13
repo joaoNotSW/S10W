@@ -31,7 +31,7 @@ function touched(touch)
     if winner ~= "CLOSED" then
       print("WINNER:", winner)
       MAIN_GRID.winner = winner
-      setup()
+      --setup()
     end
 
   end
