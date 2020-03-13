@@ -1,2 +1,2 @@
 # S10W
-Wlecome to 10, by sw
+Welcome to 10, by sw
