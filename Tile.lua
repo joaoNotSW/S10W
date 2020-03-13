@@ -10,8 +10,6 @@ end
 function Tile:draw()
   pushStyle()
     rectMode(CORNER)
-    stroke(255)
-    strokeWidth(3)
     noFill()
     rect(self.x, self.y, self.size, self.size)
   popStyle()

@@ -9,6 +9,7 @@
 		<string>Main</string>
 		<string>Tile</string>
 		<string>Grid</string>
+		<string>NestedGrid</string>
 	</array>
 	<key>Description</key>
 	<string>No description available</string>

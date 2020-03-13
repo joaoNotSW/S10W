@@ -26,6 +26,15 @@ function Grid:draw()
     end
   end
 
+  pushStyle()
+    stroke(0, 255, 255)
+    strokeWidth(3)
+    line(self.x + self.size/3, self.y + 20, self.x + self.size/3, self.y + self.size - 20)
+    line(self.x + 2*self.size/3, self.y + 20, self.x + 2*self.size/3, self.y + self.size - 20)
+    line(self.x + 20, self.y + self.size/3, self.x + self.size - 20, self.y + self.size/3)
+    line(self.x + 20, self.y + 2*self.size/3, self.x + self.size - 20, self.y + 2*self.size/3)
+  popStyle()
+
   if self.winner == "X" then
     pushStyle()
       stroke(0, 255, 0)

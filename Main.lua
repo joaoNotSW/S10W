@@ -6,17 +6,18 @@ supportedOrientations(LANDSCAPE_ANY)
 function setup()
     NEST_LEVEL = 1
     PLAYER_NUMBER = 2
-    GRID_POS = (WIDTH - HEIGHT)/2
-    GRID_SIZE = HEIGHT
+    NESTED_GRID_POS = (WIDTH - HEIGHT)/2
+    NESTED_GRID_SIZE = HEIGHT
 
-    MAIN_GRID = Grid(GRID_POS, 0, GRID_SIZE)
-    CURRENT_PLAYER = "X"
+    --MAIN_GRID = Grid(GRID_POS, 0, GRID_SIZE)
+    NESTED_GRID = NestedGrid(NESTED_GRID_POS, 0, NESTED_GRID_SIZE)
+    --CURRENT_PLAYER = "X"
 end
 
 function draw()
     background(0)
 
-    MAIN_GRID:draw()
+    NESTED_GRID:draw()
 end
 
 function touched(touch)
