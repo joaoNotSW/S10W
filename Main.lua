@@ -6,12 +6,13 @@ supportedOrientations(LANDSCAPE_ANY)
 function setup()
     NEST_LEVEL = 1
     PLAYER_NUMBER = 2
+    GRID_POS = (WIDTH - HEIGHT)/2
     GRID_SIZE = HEIGHT
 
-    
+    MAIN_GRID = Grid(GRID_POS, 0, GRID_SIZE)
 end
 
 function draw()
     background(255)
-    tile:draw()
+    MAIN_GRID:draw()
 end

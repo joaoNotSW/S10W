@@ -10,8 +10,8 @@ end
 function Tile:draw()
   rectMode(CORNER)
   stroke(0)
-  strokeWidth(1)
-  fill(255)
+  strokeWidth(3)
+  fill(255, 0, 0)
   rect(self.x, self.y, self.size, self.size)
 end
 
