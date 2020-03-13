@@ -10,4 +10,3 @@ end
 function draw()
     background(255)
 end
-
