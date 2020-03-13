@@ -29,14 +29,18 @@ function Grid:draw()
   if self.winner == "X" then
     pushStyle()
       stroke(0, 255, 0)
-      strokeWidth(15)
+      strokeWidth(25)
       x = self.x + self.size/6
       y = self.y + self.size/6
       line(x, y, x + 2*self.size/3, y + 2*self.size/3)
       line(x, y + 2*self.size/3, x + 2*self.size/3, y)
     popStyle()
-  else
+  elseif self.winner == "O" then
     pushStyle()
+      noFill()
+      stroke(255, 0, 0)
+      strokeWidth(25)
+      ellipse(WIDTH/2, HEIGHT/2, self.size - self.size/6)
     popStyle()
   end
 
