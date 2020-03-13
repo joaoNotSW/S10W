@@ -56,17 +56,11 @@ function Grid:draw()
 end
 
 function Grid:touched(touch, player)
-  if touch.state == ENDED then
-    if touch.x >= self.x and touch.x <= self.x + self.size then
-      if touch.y >= self.y and touch.y <= self.y + self.size then
-        j = math.floor((touch.x - self.x)/(self.size/3))
-        i = math.floor((touch.y - self.y)/(self.size/3))
+  if self.winner == nil then
+    j = math.floor((touch.x - self.x)/(self.size/3))
+    i = math.floor((touch.y - self.y)/(self.size/3))
 
-        --Debug
-        print (j,i, player)
-        return self.tiles[i][j]:touched(touch, player)
-      end
-    end
+    return self.tiles[i][j]:touched(touch, player)
   end
 end
 
@@ -75,6 +69,7 @@ function Grid:checkwin()
   for i = 0, 2 do
     if self.tiles[i][0].state == self.tiles[i][1].state and self.tiles[i][0].state == self.tiles[i][2].state then
       if self.tiles[i][0].state ~= "CLOSED" then
+        self.winner = self.tiles[i][0].state
         return self.tiles[i][0].state
       end
     end
@@ -84,6 +79,7 @@ function Grid:checkwin()
   for j = 0, 2 do
     if self.tiles[0][j].state == self.tiles[1][j].state and self.tiles[0][j].state == self.tiles[2][j].state then
       if self.tiles[0][j].state ~= "CLOSED" then
+        self.winner = self.tiles[0][j].state
         return self.tiles[0][j].state
       end
     end
@@ -92,12 +88,14 @@ function Grid:checkwin()
   -- Check Diagonals
   if self.tiles[0][0].state == self.tiles[1][1].state and self.tiles[0][0].state == self.tiles[2][2].state then
     if self.tiles[1][1].state ~= "CLOSED" then
+      self.winner = self.tiles[1][1].state
       return self.tiles[1][1].state
     end
   elseif self.tiles[0][2].state == self.tiles[1][1].state and self.tiles[0][2].state == self.tiles[2][0].state then
     if self.tiles[1][1].state ~= "CLOSED" then
+      self.winner = self.tiles[1][1].state
       return self.tiles[1][1].state
     end
   end
-  return "CLOSED"
+  return nil
 end
