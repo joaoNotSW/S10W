@@ -27,13 +27,17 @@ function Grid:draw()
   end
 end
 
-function Grid:touched(touch)
+function Grid:touched(touch, player)
   if touch.state == ENDED then
     if touch.x >= self.x and touch.x <= self.x + self.size then
       if touch.y >= self.y and touch.y <= self.y + self.size then
         j = math.floor((touch.x - self.x)/(self.size/3))
         i = math.floor((touch.y - self.y)/(self.size/3))
-        print (j,i)
+
+        self.tiles[i][j]:touched(touch, player)
+
+        --Debug
+        print (j,i, player)
       end
     end
   end

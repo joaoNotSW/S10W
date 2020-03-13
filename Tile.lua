@@ -8,13 +8,31 @@ function Tile:init(x, y, size)
 end
 
 function Tile:draw()
-  rectMode(CORNER)
-  stroke(0)
-  strokeWidth(3)
-  fill(255, 0, 0)
-  rect(self.x, self.y, self.size, self.size)
+  pushStyle()
+    rectMode(CORNER)
+    stroke(0)
+    strokeWidth(3)
+    fill(255)
+    rect(self.x, self.y, self.size, self.size)
+  popStyle()
+
+  if self.state == "X" then
+    pushStyle()
+      fill(0)
+      stroke(0)
+      strokeWidth(3)
+      line(self.x + self.size/3, self.y + self.size/3, self.x + 2*self.size/3, self.y + 2*self.size/3)
+      line(self.x + self.size/3, self.y + 2*self.size/3, self.x + 2*self.size/3, self.y + self.size/3)
+    popStyle()
+  elseif self.state == "O" then
+    pushStyle()
+
+    popStyle()
+  end
 end
 
-function Tile:touched(touch)
-
+function Tile:touched(touch, player)
+  if self.state == "CLOSED" then
+    self.state = player
+  end
 end

@@ -10,6 +10,7 @@ function setup()
     GRID_SIZE = HEIGHT
 
     MAIN_GRID = Grid(GRID_POS, 0, GRID_SIZE)
+    CURRENT_PLAYER = "X"
 end
 
 function draw()
@@ -18,5 +19,5 @@ function draw()
 end
 
 function touched(touch)
-  MAIN_GRID:touched(touch)
+  MAIN_GRID:touched(touch, CURRENT_PLAYER)
 end
