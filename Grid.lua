@@ -65,8 +65,6 @@ function Grid:touched(touch, player)
     jx = math.floor((touch.x - self.x)/(self.size/3))
     iy = math.floor((touch.y - self.y)/(self.size/3))
 
-    print(jx, iy)
-
     tmp = self.tiles[iy][jx]:touched(touch, player)
 
     if tmp == 0 then

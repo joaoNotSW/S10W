@@ -70,7 +70,6 @@ function NestedGrid:touched(touch, player)
           if tmp == 0 then
             self.nextPlay[0] = self.grids[i][j].lastPlay[0]
             self.nextPlay[1] = self.grids[i][j].lastPlay[1]
-
             if self.grids[self.nextPlay[1]][self.nextPlay[0]].winner ~= nil then
               self.nextPlay[0] = nil
               self.nextPlay[1] = nil
@@ -86,6 +85,12 @@ function NestedGrid:touched(touch, player)
           if tmp == 0 then
             self.nextPlay[0] = self.grids[i][j].lastPlay[0]
             self.nextPlay[1] = self.grids[i][j].lastPlay[1]
+
+            if self.grids[self.nextPlay[1]][self.nextPlay[0]].winner ~= nil then
+              print("A VONTe")
+              self.nextPlay[0] = nil
+              self.nextPlay[1] = nil
+            end
           end
 
           self.grids[i][j]:checkwin()
