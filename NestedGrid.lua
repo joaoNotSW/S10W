@@ -21,27 +21,29 @@ function NestedGrid:init(x, y, size)
 end
 
 function NestedGrid:draw()
-  for i = 0, 2 do
-    for j = 0, 2 do
-      self.grids[i][j]:draw()
+  if self.winner == nil then
+    for i = 0, 2 do
+      for j = 0, 2 do
+        self.grids[i][j]:draw()
+      end
     end
+
+    pushStyle()
+      if self.nextPlayer == "X" then
+        fill(100, 255, 100, 50)
+      else
+        fill(255, 100, 100, 50)
+      end
+      rectMode(CORNER)
+
+      if self.nextPlay[0] ~= nil and self.nextPlay[1] ~= nil then
+        size = self.grids[0][0].size
+        rect(self.x + self.nextPlay[0]*size, self.y + self.nextPlay[1]*size, size)
+      else
+          rect(self.x, self.y, self.size)
+      end
+    popStyle()
   end
-
-  pushStyle()
-    if self.nextPlayer == "X" then
-      fill(100, 255, 100, 50)
-    else
-      fill(255, 100, 100, 50)
-    end
-    rectMode(CORNER)
-
-    if self.nextPlay[0] ~= nil and self.nextPlay[1] ~= nil then
-      size = self.grids[0][0].size
-      rect(self.x + self.nextPlay[0]*size, self.y + self.nextPlay[1]*size, size)
-    else
-        rect(self.x, self.y, self.size)
-    end
-  popStyle()
 
   pushStyle()
     stroke(0)
