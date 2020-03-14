@@ -20,21 +20,24 @@ function draw()
 end
 
 function touched(touch)
-  if NESTED_GRID:touched(touch, CURRENT_PLAYER) == 0 then
-    if CURRENT_PLAYER == "X" then
-      CURRENT_PLAYER = "O"
-      NESTED_GRID.nextPlayer = "O"
-    else
-      CURRENT_PLAYER = "X"
-      NESTED_GRID.nextPlayer = "X"
-    end
+  if GAME_WINNER == nil then
+    if NESTED_GRID:touched(touch, CURRENT_PLAYER) == 0 then
+      if CURRENT_PLAYER == "X" then
+        CURRENT_PLAYER = "O"
+        NESTED_GRID.nextPlayer = "O"
+      else
+        CURRENT_PLAYER = "X"
+        NESTED_GRID.nextPlayer = "X"
+      end
 
-    GAME_WINNER = NESTED_GRID:checkwin()
-    if GAME_WINNER ~= nil then
-      NESTED_GRID.winner = GAME_WINNER
-      alert("Jogador "..GAME_WINNER.." ganhou!", "VENCEDOR")
-      restart()
+      GAME_WINNER = NESTED_GRID:checkwin()
+      if GAME_WINNER ~= nil then
+        NESTED_GRID.winner = GAME_WINNER
+        alert("Toque em qualquer sitio depois de ok para jogar de novo", "Jogador "..GAME_WINNER.." ganhou!")
+      end
     end
+  else
+    restart()
   end
 end
 
