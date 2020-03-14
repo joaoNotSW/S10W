@@ -4,7 +4,7 @@
 -- March, 2020
 
 displayMode(FULLSCREEN)
-supportedOrientations(LANDSCAPE_ANY)
+--supportedOrientations(LANDSCAPE_ANY)
 
 function setup()
   NESTED_GRID = NestedGrid((WIDTH - HEIGHT)/2, 0, HEIGHT)
@@ -30,7 +30,6 @@ function touched(touch)
 
     winner = NESTED_GRID:checkwin()
     if winner ~= nil then
-      print (winner)
       NESTED_GRID.winner = winner
     end
 

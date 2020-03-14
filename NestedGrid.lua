@@ -46,7 +46,11 @@ function NestedGrid:draw()
   end
 
   pushStyle()
-    stroke(0)
+    if self.winner == nil then
+      stroke(0)
+    else
+      stroke(175)
+    end
     strokeWidth(10)
     line(self.x + self.size/3, self.y + 20, self.x + self.size/3, self.y + self.size - 20)
     line(self.x + 2*self.size/3, self.y + 20, self.x + 2*self.size/3, self.y + self.size - 20)
@@ -106,7 +110,6 @@ function NestedGrid:touched(touch, player)
             self.nextPlay[1] = self.grids[i][j].lastPlay[1]
 
             if self.grids[self.nextPlay[1]][self.nextPlay[0]].winner ~= nil then
-              print("A VONTe")
               self.nextPlay[0] = nil
               self.nextPlay[1] = nil
             end

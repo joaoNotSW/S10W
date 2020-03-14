@@ -22,7 +22,11 @@ end
 function Grid:draw()
   -- Draw the surrounding lines
   pushStyle()
-    stroke(0)
+    if self.winner == nil then
+      stroke(0)
+    else
+      stroke(175)
+    end
     strokeWidth(5)
     line(self.x + self.size/3, self.y + 20, self.x + self.size/3, self.y + self.size - 20)
     line(self.x + 2*self.size/3, self.y + 20, self.x + 2*self.size/3, self.y + self.size - 20)
