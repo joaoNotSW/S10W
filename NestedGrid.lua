@@ -146,7 +146,7 @@ function NestedGrid:checkwin()
     if self.grids[1][1].winner ~= nil then
       return self.grids[1][1].winner
     end
-  elseif self.grids[0][2].winners == self.grids[1][1].winner and self.grids[0][2].winner == self.grids[2][0].winner then
+  elseif self.grids[0][2].winner == self.grids[1][1].winner and self.grids[0][2].winner == self.grids[2][0].winner then
     if self.grids[1][1].winner ~= nil then
       return self.grids[1][1].winner
     end
