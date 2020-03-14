@@ -5,6 +5,7 @@ function Grid:init(x, y, size)
     self.y = y
     self.size = size
     self.winner = nil --{nil, "X", "O"}
+    self.lastPlay = {nil, nil}
     self.tiles = {}
 
     -- Init tiles as empty 3x3 matrix
@@ -64,9 +65,16 @@ function Grid:touched(touch, player)
     jx = math.floor((touch.x - self.x)/(self.size/3))
     iy = math.floor((touch.y - self.y)/(self.size/3))
 
-    print (jx, iy)
+    print(jx, iy)
 
-    return self.tiles[iy][jx]:touched(touch, player)
+    tmp = self.tiles[iy][jx]:touched(touch, player)
+
+    if tmp == 0 then
+      self.lastPlay[0] = jx
+      self.lastPlay[1] = iy
+    end
+
+    return tmp
   end
 
   return -1

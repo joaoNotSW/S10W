@@ -62,10 +62,31 @@ function NestedGrid:touched(touch, player)
         j = math.floor((touch.x - self.x)/(self.size/3))
         i = math.floor((touch.y - self.y)/(self.size/3))
 
+        if j == self.nextPlay[0] and i == self.nextPlay[1] then
+          tmp = self.grids[i][j]:touched(touch, player)
 
-        tmp = self.grids[i][j]:touched(touch, player)
-        self.grids[i][j]:checkwin()
-        return tmp
+          if tmp == 0 then
+            self.nextPlay[0] = self.grids[i][j].lastPlay[0]
+            self.nextPlay[1] = self.grids[i][j].lastPlay[1]
+          end
+
+          self.grids[i][j]:checkwin()
+          return tmp
+        end
+
+        if self.nextPlay[0] == nil and self.nextPlay[1] == nil then
+          tmp = self.grids[i][j]:touched(touch, player)
+
+          if tmp == 0 then
+            self.nextPlay[0] = self.grids[i][j].lastPlay[0]
+            self.nextPlay[1] = self.grids[i][j].lastPlay[1]
+          end
+
+          self.grids[i][j]:checkwin()
+          return tmp
+        end
+
+        return -1
       end
     end
   end
