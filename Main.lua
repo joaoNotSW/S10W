@@ -10,6 +10,7 @@ function setup()
   NESTED_GRID = NestedGrid((WIDTH - HEIGHT)/2, 0, HEIGHT)
 
   CURRENT_PLAYER = "X"
+  GAME_WINNER = nil
 end
 
 function draw()
@@ -28,10 +29,15 @@ function touched(touch)
       NESTED_GRID.nextPlayer = "X"
     end
 
-    winner = NESTED_GRID:checkwin()
-    if winner ~= nil then
-      NESTED_GRID.winner = winner
+    GAME_WINNER = NESTED_GRID:checkwin()
+    if GAME_WINNER ~= nil then
+      NESTED_GRID.winner = GAME_WINNER
+      alert("Jogador "..GAME_WINNER.." ganhou!", "VENCEDOR")
+      restart()
     end
-
   end
+end
+
+function restart()
+  setup()
 end

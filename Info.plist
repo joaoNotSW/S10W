@@ -7,9 +7,9 @@
 	<key>Buffer Order</key>
 	<array>
 		<string>Main</string>
-		<string>Tile</string>
-		<string>Grid</string>
 		<string>NestedGrid</string>
+		<string>Grid</string>
+		<string>Tile</string>
 	</array>
 	<key>Description</key>
 	<string>No description available</string>
