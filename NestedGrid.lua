@@ -27,6 +27,18 @@ function NestedGrid:draw()
   end
 
   pushStyle()
+    fill(100, 100, 255, 50)
+    rectMode(CORNER)
+
+    if self.nextPlay[0] ~= nil and self.nextPlay[1] ~= nil then
+      size = self.grids[0][0].size
+      rect(self.x + self.nextPlay[0]*size, self.y + self.nextPlay[1]*size, size)
+    else
+        rect(self.x, self.y, self.size)
+    end
+  popStyle()
+
+  pushStyle()
     stroke(0)
     strokeWidth(10)
     line(self.x + self.size/3, self.y + 20, self.x + self.size/3, self.y + self.size - 20)
