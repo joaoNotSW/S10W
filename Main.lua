@@ -22,8 +22,10 @@ function touched(touch)
   if NESTED_GRID:touched(touch, CURRENT_PLAYER) == 0 then
     if CURRENT_PLAYER == "X" then
       CURRENT_PLAYER = "O"
+      NESTED_GRID.nextPlayer = "O"
     else
       CURRENT_PLAYER = "X"
+      NESTED_GRID.nextPlayer = "X"
     end
 
     winner = NESTED_GRID:checkwin()

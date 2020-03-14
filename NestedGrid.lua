@@ -7,6 +7,7 @@ function NestedGrid:init(x, y, size)
   self.grids = {}
   self.nextPlay = {nil, nil}
   self.winner = nil
+  self.nextPlayer = "X"
 
   for i = 0, 2 do
     self.grids[i] = {}
@@ -27,7 +28,11 @@ function NestedGrid:draw()
   end
 
   pushStyle()
-    fill(100, 100, 255, 50)
+    if self.nextPlayer == "X" then
+      fill(100, 255, 100, 50)
+    else
+      fill(255, 100, 100, 50)
+    end
     rectMode(CORNER)
 
     if self.nextPlay[0] ~= nil and self.nextPlay[1] ~= nil then
