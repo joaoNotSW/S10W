@@ -19,13 +19,7 @@ function Grid:init(x, y, size)
 end
 
 function Grid:draw()
-  -- Draw all tiles
-  for i = 0, 2 do
-    for j = 0, 2 do
-      self.tiles[i][j]:draw()
-    end
-  end
-
+  -- Draw the surrounding lines
   pushStyle()
     stroke(0, 255, 255)
     strokeWidth(3)
@@ -35,6 +29,16 @@ function Grid:draw()
     line(self.x + 20, self.y + 2*self.size/3, self.x + self.size - 20, self.y + 2*self.size/3)
   popStyle()
 
+  if self.winner == nil then
+    -- Draw all tiles
+    for i = 0, 2 do
+      for j = 0, 2 do
+        self.tiles[i][j]:draw()
+      end
+    end
+  end
+
+  -- If there is a winner draw a X or O
   if self.winner == "X" then
     pushStyle()
       stroke(0, 255, 0)
@@ -64,6 +68,8 @@ function Grid:touched(touch, player)
 
     return self.tiles[iy][jx]:touched(touch, player)
   end
+
+  return -1
 end
 
 function Grid:checkwin()

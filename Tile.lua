@@ -8,12 +8,7 @@ function Tile:init(x, y, size)
 end
 
 function Tile:draw()
-  pushStyle()
-    rectMode(CORNER)
-    noFill()
-    rect(self.x, self.y, self.size, self.size)
-  popStyle()
-
+  -- If there is an X
   if self.state == "X" then
     pushStyle()
       stroke(0, 255, 0)
@@ -22,6 +17,7 @@ function Tile:draw()
       line(self.x + self.size/3, self.y + 2*self.size/3, self.x + 2*self.size/3, self.y + self.size/3)
     popStyle()
 
+  -- If there is an O
   elseif self.state == "O" then
     pushStyle()
       noFill()
@@ -37,4 +33,6 @@ function Tile:touched(touch, player)
     self.state = player
     return 0
   end
+
+  return -1
 end
