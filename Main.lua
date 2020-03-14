@@ -13,7 +13,7 @@ function setup()
 end
 
 function draw()
-    background(0)
+    background(215)
 
     NESTED_GRID:draw()
 end

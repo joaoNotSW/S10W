@@ -21,8 +21,8 @@ end
 function Grid:draw()
   -- Draw the surrounding lines
   pushStyle()
-    stroke(0, 255, 255)
-    strokeWidth(3)
+    stroke(0)
+    strokeWidth(5)
     line(self.x + self.size/3, self.y + 20, self.x + self.size/3, self.y + self.size - 20)
     line(self.x + 2*self.size/3, self.y + 20, self.x + 2*self.size/3, self.y + self.size - 20)
     line(self.x + 20, self.y + self.size/3, self.x + self.size - 20, self.y + self.size/3)
