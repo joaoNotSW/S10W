@@ -36,7 +36,7 @@ function touched(touch)
         alert("Toque em qualquer sitio depois de ok para jogar de novo", "Jogador "..GAME_WINNER.." ganhou!")
       end
     end
-  else 
+  else
     if touch.state == ENDED then
         restart()
     end

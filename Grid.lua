@@ -22,7 +22,7 @@ end
 function Grid:draw()
   -- Draw the surrounding lines
   pushStyle()
-    if self.winner == nil then
+    if self.winner == nil or self.winner == "TIE" then
       stroke(0)
     else
       stroke(175)
@@ -34,11 +34,15 @@ function Grid:draw()
     line(self.x + 20, self.y + 2*self.size/3, self.x + self.size - 20, self.y + 2*self.size/3)
   popStyle()
 
-  if self.winner == nil then
+  if self.winner == nil or self.winner == "TIE" then
     -- Draw all tiles
     for i = 0, 2 do
       for j = 0, 2 do
-        self.tiles[i][j]:draw()
+        if self.winner == "TIE" then
+          self.tiles[i][j]:draw(255)
+        else
+          self.tiles[i][j]:draw(0)
+        end
       end
     end
   end
@@ -114,6 +118,21 @@ function Grid:checkwin()
       self.winner = self.tiles[1][1].state
       return self.tiles[1][1].state
     end
+  end   
+   
+  -- Check Tie 
+  numFilled = 0
+  for i = 0, 2 do
+    for j = 0, 2 do
+      if self.tiles[i][j].state ~= "CLOSED" then 
+        numFilled = numFilled + 1     
+      end
+    end
   end
+    
+  if numFilled == 9 then 
+    self.winner = "TIE"
+  end
+
   return nil
 end
