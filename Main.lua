@@ -11,12 +11,14 @@ function setup()
 
   CURRENT_PLAYER = "X"
   GAME_WINNER = nil
+  b = Button(WIDTH/2, HEIGHT/2, 500, 100)
 end
 
 function draw()
   background(245)
 
-  NESTED_GRID:draw()
+  --NESTED_GRID:draw()
+  b:draw()
 end
 
 function touched(touch)
