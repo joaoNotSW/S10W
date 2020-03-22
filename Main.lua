@@ -11,18 +11,21 @@ function setup()
 
   CURRENT_PLAYER = "X"
   GAME_WINNER = nil
-  b = Button("Button 1", WIDTH/2, HEIGHT/2, 500, 100)
+  --b = Button("Singleplayer", WIDTH/2, HEIGHT/2, 500, 100)
+  m = Menu()
 end
 
 function draw()
   background(245)
 
   --NESTED_GRID:draw()
-  b:draw()
+  --b:draw()
+  m:draw()
 end
 
 function touched(touch)
-  b:touched(touch)
+  --b:touched(touch)
+  m:touched(touch)
 
   if GAME_WINNER == nil then
     if NESTED_GRID:touched(touch, CURRENT_PLAYER) == 0 then
