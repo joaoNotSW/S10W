@@ -31,15 +31,19 @@ end
 function Button:touched(touch)
   if touch.state == ENDED then
     if dist(touch.x, touch.y, self.x - (self.width/2 - self.radius), self.y) <= self.radius then
-      print("touched left")
+      return true
 
-    elseif  then
-      print("touched right")
+    elseif dist(touch.x, touch.y, self.x + (self.width/2 - self.radius), self.y) <= self.radius then
+      return true
 
+    elseif touch.x >= self.x - (self.width/2 - self.radius) and touch.x <= self.x + (self.width/2 - self.radius) then
+    if touch.y >= self.y - self.height/2 and touch.y <= self.y + self.height/2 then
+        return true
+      end
     end
   end
 
-  return nil
+  return false
 end
 
 function dist(x1, y1, x2, y2)
