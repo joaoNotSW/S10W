@@ -11,7 +11,7 @@ function setup()
 
   CURRENT_PLAYER = "X"
   GAME_WINNER = nil
-  b = Button(WIDTH/2, HEIGHT/2, 500, 100)
+  b = Button("Button 1", WIDTH/2, HEIGHT/2, 500, 100)
 end
 
 function draw()
@@ -22,6 +22,8 @@ function draw()
 end
 
 function touched(touch)
+  b:touched(touch)
+
   if GAME_WINNER == nil then
     if NESTED_GRID:touched(touch, CURRENT_PLAYER) == 0 then
       if CURRENT_PLAYER == "X" then
