@@ -12,6 +12,7 @@
 		<string>Tile</string>
 		<string>Button</string>
 		<string>Menu</string>
+		<string>Touch</string>
 	</array>
 	<key>Description</key>
 	<string>No description available</string>

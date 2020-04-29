@@ -26,7 +26,23 @@ function draw()
   if APP_STATE == "MENU" then
     mainMenu:draw()
   else
-    NESTED_GRID:draw()
+        NESTED_GRID:draw()
+    if APP_STATE == "Online Multiplayer" then
+        r, rr, rrr = socket.select({tcp}, nil, 0.1)
+            if(r[tcp] ~= nil) then
+                s = tcp:receive()
+                touch = Touch(NESTED_GRID.x + tonumber(s:sub(3,3))*HEIGHT/3 + tonumber(s:sub(7,7))*HEIGHT/9 + HEIGHT/27, NESTED_GRID.y + tonumber(s:sub(5,5))*HEIGHT/3 + tonumber(s:sub(9,9))*HEIGHT/9 + HEIGHT/27)
+                if CURRENT_PLAYER == "O" and NESTED_GRID:touched(touch, CURRENT_PLAYER) == 0 then
+                    if CURRENT_PLAYER == "X" then
+                        CURRENT_PLAYER = "O"
+                        NESTED_GRID.nextPlayer = "O"
+                    else
+                        CURRENT_PLAYER = "X"
+                        NESTED_GRID.nextPlayer = "X"
+                    end
+                end
+            end
+    end
         
     GAME_WINNER = NESTED_GRID:checkwin()
     if GAME_WINNER ~= nil and ALERT == false then
@@ -48,8 +64,6 @@ function touched(touch)
     end
         
   elseif APP_STATE == "Multiplayer" or APP_STATE == "Online Multiplayer" then
-    NESTED_GRID:draw()
-        
     if GAME_WINNER == nil then
             if NESTED_GRID:touched(touch, CURRENT_PLAYER) == 0 then
                 if CURRENT_PLAYER == "X" then

@@ -79,7 +79,7 @@ function NestedGrid:draw()
 end
 
 function NestedGrid:touched(touch, player)
-  if touch.state == ENDED then
+  if touch.state == ENDED or touch.state == 1999 then
     if touch.x >= self.x and touch.x <= self.x + self.size then
       if touch.y >= self.y and touch.y <= self.y + self.size then
         j = math.floor((touch.x - self.x)/(self.size/3))
