@@ -20,7 +20,8 @@ end
 function Menu:touched(touch)
   if touch.state == ENDED then
     if self.buttons[math.floor(touch.y/(HEIGHT/3))]:touched(touch) then
-      print("Something was touched")
+      return 1
     end
   end
+    return 0
 end
