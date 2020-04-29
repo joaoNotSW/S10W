@@ -1,7 +1,7 @@
 Button = class()
 
-function Button:init(text, x, y, width, height)
-  self.text = text
+function Button:init(txt, x, y, width, height)
+  self.txt = txt
 
   self.x = x
   self.y = y
@@ -24,7 +24,7 @@ function Button:draw()
     font("Futura-CondensedExtraBold")
     fontSize(55)
     textMode(CENTER)
-    text(self.text, self.x, self.y)
+    text(self.txt, self.x, self.y)
   popStyle()
 end
 

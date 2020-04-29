@@ -11,8 +11,13 @@ function setup()
 
   CURRENT_PLAYER = "X"
   GAME_WINNER = nil
+  ALERT = false
   APP_STATE = "MENU"
   mainMenu = Menu()
+  
+  socket = require("socket")  
+  server, port = "192.168.1.178", 1999
+  tcp = assert(socket.tcp())
 end
 
 function draw()
@@ -22,15 +27,27 @@ function draw()
     mainMenu:draw()
   else
     NESTED_GRID:draw()
+        
+    GAME_WINNER = NESTED_GRID:checkwin()
+    if GAME_WINNER ~= nil and ALERT == false then
+        ALERT = true
+        NESTED_GRID.winner = GAME_WINNER
+        alert("Toque em qualquer sitio depois de ok para jogar de novo", "Jogador "..GAME_WINNER.." ganhou!")
+    end
   end
 end
 
 function touched(touch)
   if APP_STATE == "MENU" then
-    if mainMenu:touched(touch) == 1 then
-        APP_STATE = "othee" 
+    res = mainMenu:touched(touch)
+    if res ~= 0 then
+        APP_STATE = res
+        if res == "Online Multiplayer" then
+            tcp:connect(server, port)
+        end
     end
-  else
+        
+  elseif APP_STATE == "Multiplayer" or APP_STATE == "Online Multiplayer" then
     NESTED_GRID:draw()
         
     if GAME_WINNER == nil then
@@ -42,20 +59,16 @@ function touched(touch)
                     CURRENT_PLAYER = "X"
                     NESTED_GRID.nextPlayer = "X"
                 end
-                
-                GAME_WINNER = NESTED_GRID:checkwin()
-                if GAME_WINNER ~= nil then
-                    NESTED_GRID.winner = GAME_WINNER
-                    alert("Toque em qualquer sitio depois de ok para jogar de novo", "Jogador "..GAME_WINNER.." ganhou!")
-                end
             end
         else
             if touch.state == ENDED then
                 restart()
             end
         end
-  end
-
+    elseif APP_STATE == "Single Player" then
+        --will develop ai later on
+        print("nothing yet")
+    end
 end
 
 function restart()
