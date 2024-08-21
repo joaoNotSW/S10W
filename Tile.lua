@@ -1,3 +1,5 @@
+# Tile
+
 Tile = class()
 
 function Tile:init(x, y, size)
