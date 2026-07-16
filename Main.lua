@@ -12,7 +12,7 @@ function setup()
   CURRENT_PLAYER = "X"
   GAME_WINNER = nil
   ALERT = false
-  APP_STATE = "MENU"
+  APP_STATE = "MENUU"
   mainMenu = Menu()
   
   socket = require("socket")  
